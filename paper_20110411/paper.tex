@@ -1,0 +1,115 @@
+% This is paper.tex
+
+
+\section{Prerequisite Definitions}  
+There are some terms that we will refer to and they will be defined here. Let a graph G be defined as a pair (V,E) of finite sets. V is the set of all vertices in the graph and E is the set of all edges in the graph. An edge, (an element in the set E) connects an element $v_i$ in the set V either with itself $(v_i,v_i)$ or with another vertex $v_k$ in the set V. 
+	You can connect two distinct points in a graph with a path.  A path from vertex $v_1$ to $v_n$ is a sequence of edges where the first edge contains $v_1$, the last edge contains $v_n$, and a common vertex connects a pair of two edges for all edges that lie between $v_1$ and $v_n$. For example in the following graph we connect vertex a to vertex d with the path $\{(a,b), (b,c),(c,d)\}$. 
+
+
+\includegraphics[height = 3in]{white.png}
+
+We denote a connected graph to be a graph such that for any two vertices in V, there is a path from one vertex to the other. The graph above would be considered a connected graph because you can get from any vertex to any other one. 
+
+Imagine removing a chunk of a graph to get a new one. This is a subgraph. Formally, a subgraph of the graph G is a graph H with a set of vertices that is contained in V and a set of edges that is contained in E.  A partition of a graph G is defined as a partition of E and V into the subsets $V_k$ and $E_k$ such that there exists a graph $G_k$ that has $V_k$ as the set of vertices and $E_k$ as the set of edges. We can partition a graph into subgraphs. If we partition a graph into subgraphs, the subgraphs are called connected components if there is no path that connects a vertex from one subgraph to another. If a graph is not connected than you can partition it into subgraphs which are indeed connected. The graph below has 4 separate connected components.
+	
+A complete graph is a graph where every pair of vertices is connected. Formally, we define a complete graph $K_n$ to be a graph with n vertices such that every possible edge is contained in the set of edges. The number of edges in $K_n$ is $n\choose{2}$. 
+	
+A k-partite graph is a graph that can be partitioned into k subsets such that no two vertices that are connected by a shared edge are contained in the same subset. For our purposes, familiarity with bipartite graphs (otherwise known as 2-partite graphs) will be helpful. We denote $K_{m,n}$ to be a complete, bipartite graph containing two partitions of vertices of sizes $m$ and $n$. An example would be $K_{3,2}$ which is shown here.
+
+\includegraphics[height = 3in]{white.png}
+
+\section{Plane Graphs}
+
+We define a plane graph G to be a pair $(V,E)$ of finite sets with the following properties:
+\begin{enumerate}
+\item{$V \subseteq R^2$}
+\item{every edge is an arc between two vertices}
+\item{different edges have different sets of endpoints}
+\item{the interior of an edge contains no vertex and no point of any other edge}
+\end{enumerate}
+
+A plane graph G has a set of faces $F(G)$. The set of faces is found by $R^2 \setminus G$. 
+
+\subsection{Euler's formula}
+Euler's formula may be used to describe plane graphs.
+\textbf{Theorem}: Let G be a connected plane graph with $n$ vertices, $m$ edges, and $l$ faces. Then 
+$$n-m+l=2$$
+
+\textbf{Corollary}\\
+A plane graph with $n \geq 3$ vertices has at most 3n-6 edges. Every plane triangulation with n vertices has 3n-6 edges. 
+
+We can use Euler's formula to show whether or not a given graph can be shown as a plane graph. For example, the graph $K_5$ has $n=5, m=10, l=6$. $K_5$ is not a plane graph because the number of edges is $10 > 3(5) – 6$, therefore contradicting the corollary of the theorem. Likewise $K_{3,3}$ cannot occur as a plane graph and that can be shown with Euler's theorem.
+
+The following will be instrumental in showing the conditions under which a graph is considered planar.
+
+\textbf{Corollary}\\
+A plane graph does not contain $K_5$ or $K_{3,3}$  as a topological minor.
+
+\section{Planar Graphs}
+A planar graph is a graph that is isomorphic to a plane graph. That is, the graph can be embedded onto a plane region. A maximally planar graph is a planar graph that cannot have edges added to it while still keeping the graph planar.  A maximally planar graph is also a complete graph. An example of maximally planar graph is $K_3$:
+
+
+\includegraphics[height = 3in]{white.png}
+
+The following graph is not maximally planar because you can extend the graph to $K_3$, a larger, planar graph, by adding an edge connecting vertex a and b.	
+
+
+\includegraphics[height = 3in]{white.png}
+
+\textbf{Lemma}\\
+\begin{enumerate}
+\item{Every maximal plane graph is maximally planar}
+\item{A planar graph with $n\geq 3$ vertices is maximally planar if and only if it has $3n-6$ edges.}
+\end{enumerate}
+
+
+\section{Kuratowski's Theorem}
+Kuratowski's Theorem may be used to tell us when a graph is non-planar. 
+
+\textbf{Theorem}\\
+A graph is planar if it does not contain a subgraph that is a subdivision of $K_5$ or $K_{3,3}$.  
+
+\textbf{Lemma}\\
+Every 3-connected graph G that does not have $K_5$ or $K_{3,3}$ as a minor is a planar graph.
+\\
+Let us start by looking at a minimal non-planar graph G. A minimal non-planar graph is a non-planar graph such that if one edge is removed from the graph then the graph becomes planar. In the graph G, we will try to find a simple cycle that connects two vertices, u and v.  We want to the cycle C to have property such that $G - C$ has at least two components.  If it has at least two components then C has at least two bridges. We will show that below. 
+
+Let the $G - C$ graph be defined as the graph G with all edges and vertices in C removed, except for the two vertices u and v.  Note that when we do this, the vertices u and v are also connected to vertices in G that are NOT in C.
+ 
+First contract the edge E that is connecting u and v. The resulting graph is G~ with the edge E now contracted to the vertex $x_{uv}$. Now delete $x_{uv}$. The resulting graph is $G - E$ and $G - E$ is planar. Find a path that connects u and v (the edges of E) that  Look at the outer boundary that separates the two separate faces of $G - E$. We denote this to be the cycle C.
+
+\includegraphics[height = 3in]{white.png}
+
+The parts of the graph that are \emph{not} in C can be divided into bridges.
+
+Two bridges that are \textbf{compatible} are bridges that can be drawn either inside or outside of the cycle without crossing each other. Examples are shown below.
+
+\includegraphics[height = 3in]{white.png}
+
+Two bridges that are \textbf{incompatible} cannot be drawn either inside or outside of the cycle without crossing. Say we have two bridges A and B for the cycle.  A is bound by vertices $a_1$ and $a_2$, while B is bound by vertices $b_1$ and $b_2$. $a_1, a_2, b_1$ and $b_2$ all lie on the cycle. If A and B are incompatible, then the vertices have to be arranged on the cycle, in clockwise order, in the order $a_1, b_1, a_2, b_2$.  We can see this easily by drawing out an example where the bridges A and B are chords.
+
+\includegraphics[height = 3in]{white.png}
+
+Next we will contract all bridges to create a bridge graph. The bridge graph is obtained by contracting all bridges into single vertices. An edge will connect any two bridges that are incompatible. We can reduce a graph G into its bridge graph this way. If we do this and there are no edge crossings in the bridge graph, then the graph G is planar.
+
+If the bridge graph is planar, then it can be drawn as a bipartite graph. That is, it would be possible to divide the bridge graph into two groups of vertices such that there is no edge between any of the vertices in a given group. Since bipartite graphs do not contain odd cycles, we will prove Kuratowski's theorem by showing that if a bridge graph contains an odd cycle then it should be obtained by either 1) contracting edges from an edge subdivision of $K_{3,3}$ or $K_5$; or 2) vertex splitting of $K_5$ or $K{3,3}$.
+
+\textbf{Case 1}\\
+Consider the case where the odd cycle of the bridge graph is triangular. Denote the bridges of the bridge graph as K, L, and M. All pairs of bridges (K,L), (L, M) and (K,M) are incompatible because the bridge graph contains an odd cycle. Also, since they are incompatible then that means the end points of the bridges are arranged, in clockwise order, $k_1, l_1, m_1, k_2, l_2, m_2$.  All of these would lie in a cycle. (See below)
+
+\includegraphics[height = 3in]{white.png}
+
+We see that by expanding the bridge graph then the resulting graph is a bipartite graph, specifically the graph $K_{3,3}$. This shows that if a bridge graph contains an odd cycle with three bridges, then it can subdivided to $K_{3,3}$. This is sufficient to show that if any graph has $K_{3,3}$ as a minor then it is non-planar.
+
+\textbf{Case 2}\\
+Consider the case where the odd cycle of the bridge graph contains 5 bridges, A, B, C, D, and E (see below). In order for the bridge graph to have this odd cycle, then the vertices must be arranged in this order, counterclockwise: $a_1, c_2, b_1, e_2, c_1, d_2, e_1, a_2, d_1, b_2$.  We can sequentially contract bridges and eventually get the graph $K_5$. The first bridge to be contracted is bridge A. It is shown in the figure below. Notice that in the resultant graph after contracting A, a new vertex represents A.  A is connected to each of the other bridges, at one of the endpoints of the bridge. If we do the same with each of the other bridges B, C, D and E we eventually get the graph $K_5$.  This shows that if there is a graph that contains an odd cycle then the graph has $K_5$ as a minor. Since the graph that has an odd cycle is non-planar, then this is sufficient to show that if a graph has $K_5$ as a minor then it is non-planar. 
+
+\includegraphics[height = 3in]{white.png}
+
+So what if we have larger odd cycles in bridge graphs? We can apply the same logic as shown in case 2 above, to show that these larger odd cycles in the bridge graphs can be reduced to $K_5$. That is, these larger odd cycles have $K_5$ as a minor.
+	
+This shows that every non-planar graph has $K_5$ or $K_{3,3}$ as a minor, thus proving Kuratowski's theorem.
+
+
+
+

@@ -1,0 +1,68 @@
+HAITAO
+
+2 minute summary of what you need to know about my talk (minimum spanning trees):
+
+definition: a MST of a graph is a spanning tree of minimum weight
+
+there are three common algorithms to find the MST of a graph:
+prim's algorithm: start with an arbitrary vertex in a set S, and repeatedly add the vertex not in S that is connected to S with the smallest edge. the union of these smallest edges is the output. runtime=O(E+VlogV) with fib. heap
+
+kruskal's algorithm: sort the edges in increasing weight order. start with a graph with no edges, and iterate through the edges in sorted order, adding it to the MST set if it connects two unconnected components. runtime=O(ElogV) assuming comparison-based sorting
+
+boruvka's algorithm: start with a graph with no edges, and in each step, for each component of the graph, take smallest edge connecting that component to another component. add all of these smallest edges to the graph. repeat until the graph is fully connected. runtime = O(E) per step * O(logV) steps = O(ElogV).
+
+be sure to be able to find the MST of a small graph that I give you.
+
+for more detail you can google or wiki MSTs
+-------------------------------------------------------------------------------------------
+YIFAN
+Summary of my presentation:
+
+Requirements of the Secretary Problem:
+-1 position to fill, n applicants who are ranked in preference
+-Applicants interviewed in a random order, and you only know how good each one is in comparison to those you've interviewed. After each interview, you must decide to hire that applicant or not hire them. Also, you can only hire one person, and must stop interviewing after hiring. If you go thru all candidates without hiring anyone, you must hire the last person to interview.
+-Goal: to hire the most preferred candidate for the job.
+
+Trivial solution: hire a random person, achieve goal with probability 1/n.
+We can improve on that solution by a strategy of Optimal Stopping.
+
+Optimal strategy: with n applicants, interview the first n/e without hiring any. Then hire the first person who is preferred to all previous applicants.
+ex. If n=4, then you would never hire the first person, since 1<4/e. You would only consider hiring someone beginning with the 2nd applicant.
+
+Probability of optimal strategy succeeding goes to 1/e as n goes to infinity. Obviously the lower n is, the higher probability of attaining the goal.
+
+Odds Algorithm: a different way of solving the problem for optimal stopping point.
+Define each interview as a1, … , an. Then let Ik=1 if the element is the most preferred out of a1, … , ak. Otherwise, Ik=0.
+Let pk be the probability that Ik=1. Then let rk=pk/(1-pk)
+Take Rs=rn+rn-1+...+rs such that Rs>=1 but Rs+1<1
+Let Qs=(1-pn)(1-pn-1)...(1-ps)
+Then s is the optimal stopping point, and QsRs is the probability of success.
+
+The odds algorithm isn't nearly as important as the optimal strategy and the fundamentals of the problem. 
+-------------------------------------------------------------------------------------------
+SAMMI
+For mine you should know
+
+the definition of Stern's diatomic sequence: a0=0, a1=1, a2n=an, a2n+1=an+an+1
+
+What a countable set is: has a bijection to the naturals
+
+how to draw the binary tree of the rationals: children of i/j L=i/(i-j) R=(i-j)/j
+-------------------------------------------------------------------------------------------
+ANDREW
+Hey guys,
+
+Here are some things you should know from my presentation:
+
+-The young tableau shape for a given partition lambda
+-The properties of a standard young tableau
+-The hook length formula for the standard young tableau (SYT)
+-What it means for a partition to precede another partition
+-The basic recursion for the # of SYT of the partition lambda.  f_lambda=(sum over mu preceding lambda of f_mu)
+-The content of a cell (i,j) in lambda=(j-i) and how to find the hook length of a cell using the contents of other cells.
+
+Don't worry about the rest of the notation in the proof such as X_i,Y_i,x_i, y_i
+as the problems will focus mainly on basic applications of the hook formula and basic recursions and will not involve proving anything.
+
+
+-------------------------------------------------------------------------------------------
